@@ -1,0 +1,42 @@
+﻿@using SDPlusReport.Entity
+@{
+    ViewData["Title"] = "SD Plus Report - Annual Report";
+}
+@{
+    var rptData = ViewBag.Content as List<HoursByAccount>;
+}
+<div class="col-12">
+
+    <h2>Annual Report - @DateTime.Today.Year</h2>
+    <div>
+        <table class="table table-striped table-responsive table-bordered border-info">
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Aug</th>
+                    <th>Sep</th>
+                    <th>Oct</th>
+                    <th>Nov</th>
+                    <th>Dec</th>
+                    <th>Grand Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var row in rptData)
+                    {
+                        <tr>
+                            <td>@row.AccountName</td>
+                            <td class="text-end">@row.August</td>
+                            <td class="text-end">@row.September</td>
+                            <td class="text-end">@row.October</td>
+                            <td class="text-end">@row.November</td>
+                            <td class="text-end">@row.December</td>
+                            <td class="text-end"><b>@row.YearTotal</b></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

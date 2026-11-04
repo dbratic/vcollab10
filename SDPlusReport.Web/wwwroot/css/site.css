@@ -1,0 +1,61 @@
+
+.filterArea {
+    border:1px solid #000000;
+    border-radius:10px;
+    padding:5px;
+    background-color:#efefef;
+    margin-top:10px;
+}
+
+.multiselect {
+    background-color: #ffffff !important;
+    text-align:left !important;
+}
+
+.multiselect:after {
+    content: none;
+}
+
+.dt_th {
+    background-color: #000000 !important;
+    color: white !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+}
+
+.dt_btn {
+    background-color: #0D6EFD !important;
+    color: white !important;
+    font-weight: normal !important;
+}
+
+td {
+    font-size: 12px !important;
+}
+
+
+#tblReportHoursByDay_wrapper {
+    width: 270px;
+}
+
+#tblReportHoursByPerson_wrapper {
+    width: 370px;
+}
+
+#tblReportCompliance_wrapper {
+    width: 770px;
+}
+
+#tblReportUtilizationByDepartment_wrapper {
+    width: 875px;
+}
+
+.btn-xs {
+    font-size: 0.75em; /* Makes the font smaller */
+    padding-top: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 24px; /* Sets a fixed height */
+    margin-bottom: 4px;
+}
+
