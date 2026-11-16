@@ -1,0 +1,5 @@
+﻿<Solution>
+  <Project Path="SDPlusReport.Data\SDPlusReport.Data.csproj" />
+  <Project Path="SDPlusReport.Entity\SDPlusReport.Entity.csproj" />
+  <Project Path="SDPlusReport.Web\SDPlusReport.Web.csproj" />
+</Solution>
