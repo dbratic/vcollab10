@@ -1,0 +1,19 @@
+[
+  {
+    "UserId": null,
+    "ClientId": null,
+    "AccountId": null,
+    "Module": null,
+    "RequestType": null,
+    "IsBillable": null,
+    "RecordStartDate": "2025-08-24T00:00:00",
+    "RecordEndDate": "2025-08-30T00:00:00",
+    "RecordDate": "Last Week",
+    "ReportName": "All Users Last Week ",
+    "Department": null,
+    "Location": null,
+    "EmploymentType": null,
+    "ReportType": "Detailed",
+    "FilterType": "Public"
+  }
+]

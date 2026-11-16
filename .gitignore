@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SDPlusReport/SDPlusReport.Data/bin/Debug/net10.0
+/SDPlusReport/SDPlusReport.Data/obj
+/SDPlusReport/SDPlusReport.Entity/bin/Debug/net10.0
+/SDPlusReport/SDPlusReport.Entity/obj
+/SDPlusReport/SDPlusReport.Web/bin/Debug/net10.0
+/SDPlusReport/SDPlusReport.Web/obj
