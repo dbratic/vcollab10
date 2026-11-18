@@ -38,17 +38,21 @@ namespace SDPlusReport.Data
                 strQuery.Append("AND (EXISTS ( SELECT 1 FROM TIMESHEET T3 WHERE T3.TECHNICIANID = U.USERID) ");
                 strQuery.Append("OR EXISTS (SELECT 1 FROM CHARGESTABLE C3 WHERE C3.TECHNICIANID = U.USERID)) ");
                 strQuery.Append("ORDER BY U.USERID, DEPT.DEPTNAME NULLS LAST), ");
-                strQuery.Append("TS_DATA AS ( SELECT T.TECHNICIANID AS TECHID, ");
-                strQuery.Append("CASE WHEN TO_CHAR( TO_TIMESTAMP(T.STARTTIME / 1000.0),'HH24:MI:SS') = '00:00:00' ");
-                strQuery.Append("THEN TO_TIMESTAMP(T.STARTTIME / 1000.0)::date ");
-                strQuery.Append("ELSE TO_TIMESTAMP(T.STARTTIME / 1000.0)::date + 1 ");
-                strQuery.Append("END AS WeekStartDate, T.ID AS TIMESHEETID, T.ID AS T_ID,");
-                strQuery.Append("ROUND((T.TOTALTIME / 60000.0) / 60.0, 2) AS TotalTimeSpent, ");
-                strQuery.Append("TS.NAME AS TimeSheetStatus, T.STATUSID, T.APPROVERID, AA.FIRST_NAME AS APPROVEDBY ");
+
+                strQuery.Append("TS_DATA AS ( ");
+                strQuery.Append("SELECT T.TECHNICIANID AS TECHID,( ");
+                strQuery.Append("((TO_TIMESTAMP(T.STARTTIME / 1000.0) AT TIME ZONE 'UTC') + INTERVAL '12 hours')::date ");
+                strQuery.Append(" - EXTRACT(DOW FROM ");
+                strQuery.Append("((TO_TIMESTAMP(T.STARTTIME / 1000.0) AT TIME ZONE 'UTC') + INTERVAL '12 hours')::date ");
+                strQuery.Append(")::int ");
+                strQuery.Append(") AS WeekStartDate, T.ID AS TIMESHEETID, T.ID AS T_ID,");
+                strQuery.Append("ROUND((T.TOTALTIME / 60000.0) / 60.0, 2) AS TotalTimeSpent,");
+                strQuery.Append("TS.NAME AS TimeSheetStatus, T.STATUSID,T.APPROVERID, AA.FIRST_NAME AS APPROVEDBY ");
                 strQuery.Append("FROM TIMESHEET T ");
-                strQuery.Append("JOIN TIMESHEETSTATUSDEFINITION TS ON TS.ID = T.STATUSID ");
+                strQuery.Append("LEFT JOIN TIMESHEETSTATUSDEFINITION TS ON TS.ID = T.STATUSID ");
                 strQuery.Append("LEFT JOIN SDUSER UU ON UU.USERID = T.APPROVERID ");
                 strQuery.Append("LEFT JOIN AAAUSER AA ON AA.USER_ID = UU.USERID), ");
+
                 strQuery.Append("TS_WEEK AS (SELECT DISTINCT ON (TECHID, WeekStartDate) ");
                 strQuery.Append("TECHID, WeekStartDate, TIMESHEETID, T_ID, ");
                 strQuery.Append("SUM(TotalTimeSpent) OVER (PARTITION BY TECHID, WeekStartDate) AS TotalTimeSpent, ");
