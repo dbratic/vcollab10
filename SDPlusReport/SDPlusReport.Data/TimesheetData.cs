@@ -47,7 +47,7 @@ namespace SDPlusReport.Data
                 strQuery.Append(")::int ");
                 strQuery.Append(") AS WeekStartDate, T.ID AS TIMESHEETID, T.ID AS T_ID,");
                 strQuery.Append("ROUND((T.TOTALTIME / 60000.0) / 60.0, 2) AS TotalTimeSpent,");
-                strQuery.Append("TS.NAME AS TimeSheetStatus, T.STATUSID,T.APPROVERID, AA.FIRST_NAME AS APPROVEDBY ");
+                strQuery.Append("CASE WHEN TS.NAME = 'Submitted' THEN 'Pending Approval' ELSE NAME END AS TimeSheetStatus, T.STATUSID,T.APPROVERID, AA.FIRST_NAME AS APPROVEDBY ");
                 strQuery.Append("FROM TIMESHEET T ");
                 strQuery.Append("LEFT JOIN TIMESHEETSTATUSDEFINITION TS ON TS.ID = T.STATUSID ");
                 strQuery.Append("LEFT JOIN SDUSER UU ON UU.USERID = T.APPROVERID ");
@@ -193,7 +193,7 @@ namespace SDPlusReport.Data
             {
                 using NpgsqlConnection connection = new NpgsqlConnection(dbConnection);
                 connection.Open();
-                string strQuery = "SELECT Id, name AS StatusName FROM TIMESHEETSTATUSDEFINITION ORDER BY Id";
+                string strQuery = "SELECT Id, CASE WHEN name='Submitted' THEN 'Pending Approval' ELSE Name END AS StatusName FROM TIMESHEETSTATUSDEFINITION ORDER BY Id";
                 using NpgsqlCommand cmd = new NpgsqlCommand(strQuery, connection);
                 using NpgsqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

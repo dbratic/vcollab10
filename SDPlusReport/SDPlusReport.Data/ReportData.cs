@@ -931,10 +931,11 @@ namespace SDPlusReport.Data
                 //------------------------
                 strQuery.Append("SELECT CI.udf_long2 AS ClientID, CI.udf_char5 AS ClientName, CI.udf_long1 AS VCollabID,AD.org_id AS AccountID,");
                 strQuery.Append("AD.org_name AS AccountName, PACI.UDF_CHAR4 AS AccountActivity,");
-                strQuery.Append("(SELECT TO_CHAR(TO_TIMESTAMP(MAX(PD2.createdtime) / 1000), 'YYYY-Mon-DD') ");
-                strQuery.Append("FROM PROJECTDETAILS PD2 ");
-                strQuery.Append("JOIN PROJECTACCMAPPING PAM2 ON PAM2.PROJECTID = PD2.PROJECTID ");
-                strQuery.Append("WHERE PAM2.ACCOUNTID = AD.ORG_ID ) AS CreatedDate, ");
+                strQuery.Append("TO_CHAR(TO_TIMESTAMP(createdtime / 1000.0) AT TIME ZONE 'Asia/Kolkata', 'YYYY-Mon-DD') AS CreatedDate, ");
+              //  strQuery.Append("(SELECT TO_CHAR(TO_TIMESTAMP(MAX(PD2.createdtime) / 1000), 'YYYY-Mon-DD') ");
+               // strQuery.Append("FROM PROJECTDETAILS PD2 ");
+              //  strQuery.Append("JOIN PROJECTACCMAPPING PAM2 ON PAM2.PROJECTID = PD2.PROJECTID ");
+              //  strQuery.Append("WHERE PAM2.ACCOUNTID = AD.ORG_ID ) AS CreatedDate, ");
                 strQuery.Append("(SELECT TO_CHAR(TO_TIMESTAMP(MAX(CH.ts_endtime) / 1000),'YYYY-Mon-DD') ");
                 strQuery.Append("FROM CHARGESTABLE CH ");
                 strQuery.Append("JOIN TASKTOCHARGE TTC ON TTC.CHARGEID = CH.CHARGEID ");
