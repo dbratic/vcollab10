@@ -13,3 +13,7 @@
 /.vs
 /SDPlusReport/.vs/SDPlusReport.slnx/FileContentIndex
 /SDPlusReport/.vs
+/SDPlusReport/SDPlusReport.Data/bin/Release/net10.0
+/SDPlusReport/SDPlusReport.Entity/bin/Release/net10.0
+/SDPlusReport/SDPlusReport.Web/bin/Release/net10.0
+/SDPlusReport/SDPlusReport.Web/Properties/PublishProfiles
